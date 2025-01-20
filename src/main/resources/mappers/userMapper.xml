@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kht.ecommerce.ecommerce_application.mapper.UserMapper">
-<select id="userInfo">
-    SELECT id, firstname, lastname, phone FROM users;
-</select>
+    <select id="getAllUsers">
+
+        SELECT id, firstname, lastname, phone
+        FROM users /* ; 제거 */
+    </select>
 </mapper>

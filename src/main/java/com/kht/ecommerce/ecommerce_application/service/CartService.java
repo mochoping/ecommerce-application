@@ -1,4 +1,9 @@
 package com.kht.ecommerce.ecommerce_application.service;
 
-public class CartService {
+import com.kht.ecommerce.ecommerce_application.dto.Cart;
+
+import java.util.List;
+
+public interface CartService {
+    List<Cart> getCartByUserId(int userId);
 }
