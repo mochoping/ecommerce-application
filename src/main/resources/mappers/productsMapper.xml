@@ -6,4 +6,9 @@
         SELECT id, title, price, description, category, image
         FROM products
     </select>
+
+    <select id="insertNewProduct">
+
+
+    </select>
 </mapper>
