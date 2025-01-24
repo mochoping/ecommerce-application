@@ -10,7 +10,7 @@ public interface UserMapper {
     List<User>  getAllUsers();
     // 사용자 저장
     void insertUser(User user);
-
+    User getByUserId(int id);
     // 이메일 존재 유무 확인
     int existByEmail(String email);
 }

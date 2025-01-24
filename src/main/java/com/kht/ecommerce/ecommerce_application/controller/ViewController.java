@@ -3,6 +3,7 @@ package com.kht.ecommerce.ecommerce_application.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ViewController {
@@ -35,5 +36,26 @@ public class ViewController {
     @GetMapping("/join")
     public String joinPage() {
         return "join";
+    }
+
+    // 유저 정보 수정 페이지 조회 user-edit.html
+    @GetMapping("/user/edit")
+    public String userEditPage(@RequestParam("id") int id) {
+        return "user_edit";
+    }
+    @GetMapping("/products/insert")
+    public String  getProduct() {
+        return "insertProduct";
+    }
+
+    @GetMapping("/inputEmail")
+    public String  getEmail() {
+        return "inputEmail";
+    }
+
+    // 수정하기  RequestParam 은 url 작성 X
+    @GetMapping("/update/product")
+    public String  updateProduct(@RequestParam("id") int id) {
+        return "updateProduct";
     }
 }

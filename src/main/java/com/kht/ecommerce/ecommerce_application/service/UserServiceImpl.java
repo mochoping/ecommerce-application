@@ -24,7 +24,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int existByEmail(String email) {
-        return 0;
+    public User getByUserId(int id) {
+        return userMapper.getByUserId(id);
+    }
+
+    @Override
+    public  boolean  existByEmail(String email) {
+       /*
+        앞으로 아래와 같은 기능은 서비스 Impl에서 작성할 것!!!!!
+         boolean exists = userService.existByEmail(email);
+        Map<String, Object> map = new HashMap<>();
+        map.put("exists", exists);
+        if (exists) {
+            map.put("msg", "이미 사용중인 이메일입니다.");
+        } else {
+            map.put("msg", "사용 가능한 이메일입니다.");
+        }
+        return map;
+    */
+        return userMapper.existByEmail(email) > 0 ;
     }
 }
