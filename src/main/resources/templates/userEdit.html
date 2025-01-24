@@ -64,9 +64,9 @@
     })
     $("#editBtn").click(function (event){
         $.ajax$.ajax({
-            url: "/api/user-update",
-            method: "POST",
-            contentType: "application/json",
+            url: `/api/user/${id}`,
+            method: "PUT", //컨텐츠 타입 ,데이터 작성 필수
+            contentType: "application/json", //글자형식만
             data: JSON.stringify({
                 email: $("#email").val(),
                 phone: $("#phone").val(),
