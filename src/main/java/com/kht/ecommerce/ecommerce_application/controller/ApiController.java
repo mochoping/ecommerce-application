@@ -29,6 +29,13 @@ public class ApiController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/api/user/{id}")
+    public User getUser(@PathVariable int id) {
+        User user =   userService.getByUserId(id);
+        log.info(user.toString());
+        return user;
+    }
+
     // 상품 목록 API
     @GetMapping("/api/products")
     public List<Product> getProducts() {

@@ -3,14 +3,21 @@ package com.kht.ecommerce.ecommerce_application.service;
 import com.kht.ecommerce.ecommerce_application.dto.User;
 import com.kht.ecommerce.ecommerce_application.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    // SecurityConfig 내부에 @Bean태그로 설정한 BCRypto 호출해서 비밀번호 암호화 사용
+    @Autowired // 다른 곳에서 작성된 속성이나 객체파일을 호출하기
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<User> getAllUsers() {
         return userMapper.getAllUsers();
