@@ -64,7 +64,7 @@
     })
     $("#editBtn").click(function (event){
         $.ajax$.ajax({
-            url: `/api/user/${id}`,
+            url: `/api/user/edit/${id}`,
             method: "PUT", //컨텐츠 타입 ,데이터 작성 필수
             contentType: "application/json", //글자형식만
             data: JSON.stringify({

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">책 목록</h1>
+    <table class="book-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>저자</th>
+            <th>장르</th>
+            <th>이미지</th>
+        </tr>
+        </thead>
+        <tbody id="book-list">
+
+        </tbody>
+    </table>
+</div>
+        <script>
+            $.ajax({
+                url:'/api/bookList',
+                method:'GET',
+                success:
+                        function(data){
+                            $.each(data, function (index, value){
+                                //var imgCheck = (value.imagePath == null) ?  "/images/defaultImg.png"  : "${value.imagePath}" ;
+                                $("#book-list").append(`
+                                <tr>
+                                    <td>${value.id}</td>
+                                    <td>${value.author}</td>
+                                    <td>${value.title}</td>
+                                    <td>${value.genre}</td>
+                                    <td><img src = "${value.imagePath ? value.imagePath : '/images/defaultImg.png'}" ></td> <!-- 이미지가 존재하지 않을 경우 대체이미지로 설정. 대체이미지는 defaultImg.png 대체 -->
+                                </tr>
+                                `
+                                    )
+                            })
+                        },
+                error:
+                        function (error) {
+                            alert(error);
+                        }
+            })
+
+
+        </script>
+</body>
+</html>

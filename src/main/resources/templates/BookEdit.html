@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>책 수정하기</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<form id="edit-form" enctype="multipart/form-data">
+  <input type="text" name="title" id="title" placeholder="제목">
+  <input type="text" name="author" id="author" placeholder="저자">
+  <input type="text" name="genre" id="genre" placeholder="장르">
+  <input type="file" name="file" id="file">
+  <button type="submit">수정하기</button>
+</form>
+
+<script>
+  $("imagePath").on(function (event) {
+  })
+
+
+
+
+
+
+
+
+  $("#edit-form").submit(function (e) {
+    e.preventDefault();
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    let formData = new FormData();
+    /*
+    * formData.append("title", $("#title").val());
+    * formData.append("imagePath", $("#imagePath")[0].files[0]);
+    *
+    * */
+    const bookEdit = {
+      title: $("#title").val(),
+      author: $("#author").val(),
+      genre: $("#genre").val(),
+    };
+    // 데이터를 변환
+    formData.append('bookEdit',
+            new Blob([JSON.stringify(bookEdit)],
+                    {type: "application/json"}));
+
+    const imagePath = $("#imagePath")[0].file[0];
+    if (imagePath) {
+      formdata.append('imagePath', imagePath);
+    }
+
+    $.ajax({
+      url: `/api/books/${id}/update`,
+      method: "PUT",
+      data: formdata,
+      contentType: false,
+      processData: false,
+      success:
+              function (response) {
+                alert(response);
+              },
+      error:
+              function () {
+                alert("불러오기에 문제가 생겼습니다.")
+              }
+    })
+  })
+
+</script>
+</body>
+</html>

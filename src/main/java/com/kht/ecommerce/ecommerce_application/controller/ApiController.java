@@ -28,14 +28,22 @@ public class ApiController {
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
-
+    // 사용자 상세보기
     @GetMapping("/api/user/{id}")
     public User getUser(@PathVariable int id) {
         User user =   userService.getByUserId(id);
         log.info(user.toString());
         return user;
     }
-
+    // 사용자 수정하기
+    @PutMapping("/api/user/edit/{id}") // PathVariable = 특정 사용자 데이터를 주고받는 장소 @Request = 데이터를 통째로 전달받거나, 일부분만 전달받아서 사용하거나
+    public int getUserEdit(@PathVariable("id") int id,
+                            @RequestBody User user) {
+        System.out.println("유저 : "+ user.toString());
+        user.setId(id);
+        System.out.println("유저 : "+ user.toString());
+        return userService.editUser(user);
+    }
     // 상품 목록 API
     @GetMapping("/api/products")
     public List<Product> getProducts() {
@@ -56,7 +64,7 @@ public class ApiController {
     /*
     Param = 파라미터 = 매개변수
      * @RequestParam  부분적으로 저장할 때 사용
-     * @RequestBody     전체적으로 저장할 때 사용
+     * @RequestBody 전체적으로 저장할 때 사용
      * */
     @PostMapping("/api/join")
     public void join(@RequestBody User user) {
